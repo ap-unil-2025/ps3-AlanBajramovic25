@@ -32,6 +32,16 @@ def count_words(filename):
     """
     # TODO: Open file and count words
     # Hint: Use split() to separate words
+    try : 
+        with open(filename, encoding="utf-8") as f : 
+            contents = f.read()
+    except FileNotFoundError : 
+        print(f"Sorry, the file {filename} doesnt exist")
+    else : 
+        words = contents.split()
+        num_words = len(words)
+        print(f"The file '{filename}' contains {num_words} words. ")
+        return num_words
     pass
 
 
@@ -46,6 +56,15 @@ def count_lines(filename):
         int: Total number of lines
     """
     # TODO: Open file and count lines
+    try :
+        with open(filename, encoding="utf-8") as f:
+            lines = f.readlines()
+    except FileNotFoundError:
+        print(f"Sorry, the file {filename} doesnt exist")
+    else :
+        num_lines = len(lines)
+        print(f"The file '{filename}' contains {num_lines} lines.")
+        return num_lines
     pass
 
 
@@ -62,6 +81,18 @@ def count_characters(filename, include_spaces=True):
     """
     # TODO: Open file and count characters
     # If include_spaces is False, don't count spaces
+    try : 
+        with open(filename, encoding="utf-8") as f:
+            contents = f.read()
+    except FileNotFoundError:
+        print(f"Sorry, the file {filename} doesnt exist")
+    else : 
+        if not include_spaces:
+            contents = contents.replace(" ", "").replace("\n", "").replace("\t", "")
+        num_chars = len(contents)
+        print(f"The file '{filename}' contains {num_chars} characters "
+              f"({'with' if include_spaces else 'without'} spaces).")
+        return num_chars
     pass
 
 
@@ -77,6 +108,28 @@ def find_longest_word(filename):
     """
     # TODO: Find the longest word
     # Hint: You might need to remove punctuation
+
+    import string 
+
+    try : 
+        with open(filename, encoding="utf-8") as f:
+            contents = f.read()
+    except FileNotFoundError:
+        print(f"Sorry, the file {filename} doesnt exist")
+
+    text = text.lower()
+
+    for char in string.punctuation :
+        text = text.replace(char, " ")
+
+    words = text.split()
+
+    if not words : 
+        print("No words found in file")
+
+    longest_word = max(words, key=len)
+    print(f"The longest word is '{longest_word}' with {len(longest_word)} characters")
+    return longest_word
     pass
 
 
@@ -100,6 +153,22 @@ def word_frequency(filename):
     # TODO: Convert to lowercase
     # TODO: Remove punctuation (use string.punctuation)
     # TODO: Count frequency of each word
+
+    try:
+        with open(filename, encoding="utf-8") as f:
+            text = f.read()
+    except FileNotFoundError:
+        print(f"Sorry, the file '{filename}' doest exist.")
+        return frequency
+    except Exception as e:
+        print(f"Unexpected error while reading '{filename}': {e}")
+        return frequency
+    
+    text = text.lower()
+    words = text.split()
+
+    for word in words:
+        frequency[word] = frequency.get(word, 0) + 1
 
     return frequency
 
