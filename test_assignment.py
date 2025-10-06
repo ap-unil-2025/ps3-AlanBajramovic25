@@ -3,7 +3,7 @@ Automated tests for Problem Set 3.
 These tests will be run by GitHub Classroom autograding.
 """
 
-import pytest
+#import pytest
 import os
 import sys
 from io import StringIO
