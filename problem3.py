@@ -2,7 +2,6 @@
 Problem 3: Number Analysis
 Analyze a list of numbers provided by the user.
 """
-
 def get_numbers_from_user():
     """
     Get numbers from user until they type 'done'.
@@ -62,11 +61,11 @@ def analyze_numbers(numbers):
     # TODO: Find maximum
     # TODO: Count even numbers (hint: use modulo operator)
     # TODO: Count odd numbers
-    count = numbers.len()
-    sum = numbers.sum()
-    average = numbers.average()
-    minimum = numbers.minimum()
-    maximum = numbers.maximum()
+    count = len(numbers)
+    somme = sum(numbers)
+    moyenne= sum(numbers) / len(numbers)
+    minimum1 = min(numbers)
+    maximum1 = max(numbers)
     even = 0
     odd = 0
     for num in numbers: 
@@ -75,10 +74,10 @@ def analyze_numbers(numbers):
         else : 
             odd += 1
     analysis['count'] = count
-    analysis['sum'] = sum
-    analysis['average'] = average
-    analysis['minimum'] = minimum
-    analysis['maximum'] = maximum
+    analysis['sum'] = somme
+    analysis['average'] = moyenne
+    analysis['minimum'] = minimum1
+    analysis['maximum'] = maximum1
     analysis['even'] = even
     analysis['odd'] = odd
     return analysis
