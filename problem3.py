@@ -12,12 +12,22 @@ def get_numbers_from_user():
         list: List of numbers entered by user
     """
     numbers = []
-
     while True:
         # TODO: Get input from user
         # TODO: Check if user typed 'done'
         # TODO: Try to convert to float and add to list
         # TODO: Handle invalid input gracefully
+        raw = input("Give some integers (when you are finished, type 'done'): ")
+        s = raw.strip()
+        s_norm = s.strip("'\'").lower()
+
+        if s_norm == "done": 
+            break
+
+        try : 
+            numbers.append(int(s))
+        except ValueError : 
+            print("Not an integer. Enter an integer, or 'done'")
         pass
 
     return numbers
@@ -52,7 +62,25 @@ def analyze_numbers(numbers):
     # TODO: Find maximum
     # TODO: Count even numbers (hint: use modulo operator)
     # TODO: Count odd numbers
-
+    count = numbers.len()
+    sum = numbers.sum()
+    average = numbers.average()
+    minimum = numbers.minimum()
+    maximum = numbers.maximum()
+    even = 0
+    odd = 0
+    for num in numbers: 
+        if num % 2 == 0 :
+            even += 1
+        else : 
+            odd += 1
+    analysis['count'] = count
+    analysis['sum'] = sum
+    analysis['average'] = average
+    analysis['minimum'] = minimum
+    analysis['maximum'] = maximum
+    analysis['even'] = even
+    analysis['odd'] = odd
     return analysis
 
 
@@ -75,6 +103,9 @@ def display_analysis(analysis):
     # Sum: 25
     # Average: 5.00
     # etc.
+
+    for k, v in analysis.items():
+        print(k, " : ", v)
     pass
 
 
